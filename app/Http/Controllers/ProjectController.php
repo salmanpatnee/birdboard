@@ -13,6 +13,11 @@ class ProjectController extends Controller
         return $projects;
     }
 
+    public function show(Project $project)
+    {
+        return $project;
+    }
+
     public function store()
     {
         $attributes = request()->validate([
