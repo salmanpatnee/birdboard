@@ -25,7 +25,7 @@ class ProjectController extends Controller
             'description'   => 'required'
         ]);
 
-        Project::create($attributes);
+        auth()->user()->projects()->create($attributes);
 
         return redirect(route('projects.index'));
     }
