@@ -8,7 +8,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = auth()->user()->projects;
+        $projects = auth()->user()->projects()->latest('updated_at')->get();
 
         return view('projects.index', compact('projects'));
     }
@@ -35,8 +35,8 @@ class ProjectController extends Controller
             'description'   => 'required'
         ]);
 
-        auth()->user()->projects()->create($attributes);
+        $project = auth()->user()->projects()->create($attributes);
 
-        return redirect(route('projects.index'));
+        return redirect(route('projects.show', $project->id));
     }
 }

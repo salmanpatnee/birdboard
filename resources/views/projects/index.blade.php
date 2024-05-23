@@ -12,7 +12,7 @@
         </div>
         <div class="row">
             @forelse ($projects as $project)
-                <div class="col-sm-4">
+                <div class="col-sm-4 mb-4">
                     <x-project-card :project="$project" />
                 </div>
             @empty

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,6 +21,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/projects', [ProjectController::class, 'store'])
         ->name('projects.store');
+
+    Route::post('/projects/{project}/tasks', [TaskController::class, 'store'])
+        ->name('tasks.store');
+
+    Route::patch('/projects/{project}/tasks/{task}', [TaskController::class, 'update'])
+        ->name('tasks.update');
 });
 
 
