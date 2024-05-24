@@ -11,7 +11,7 @@
 
             </div>
             <div class="col text-end">
-                <a href="{{ route('projects.create') }}" class="btn btn-primary">Create Project</a>
+                <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-primary">Edit Project</a>
             </div>
         </div>
         <div class="row">
@@ -57,6 +57,7 @@
                     </form>
 
                 </div>
+                @include('projects.errors')
             </div>
             <div class="col-md-3 pt-5">
                 <x-project-card :project="$project" />

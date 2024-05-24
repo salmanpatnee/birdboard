@@ -29,7 +29,8 @@ class ProjectController extends Controller
 
         $attributes = request()->validate([
             'title'         => 'required',
-            'description'   => 'required'
+            'description'   => 'required',
+            'notes'   => 'nullable'
         ]);
 
         $project = auth()->user()->projects()->create($attributes);
@@ -37,13 +38,20 @@ class ProjectController extends Controller
         return redirect(route('projects.show', $project->id));
     }
 
+    public function edit(Project $project)
+    {
+        return view('projects.edit', compact('project'));
+    }
+
     public function update(Project $project)
     {
-        request()->validate([
-            'notes' => 'min:3'
+        $attributes = request()->validate([
+            'title' => ['sometimes', 'required'],
+            'description' => ['sometimes', 'required'],
+            'notes' => ['nullable']
         ]);
 
-        $project->update(request(['notes']));
+        $project->update($attributes);
 
         return redirect(route('projects.show', $project->id));
     }
