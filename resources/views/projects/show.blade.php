@@ -48,8 +48,14 @@
 
                 <h2 class="h5 mb-4">Notes</h2>
                 <div class="card bg-white shadow-sm p-3">
-                    <textarea name="notes" id="notes" class="form-control border-0 bg-white" cols="3" rows="3"
-                        placeholder="Write some notes if any."></textarea>
+                    <form method="POST" action="{{ route('projects.update', $project->id) }}">
+                        @csrf
+                        @method('PATCH')
+                        <textarea name="notes" id="notes" class="form-control border-0 bg-white mb-3" cols="3" rows="3"
+                            placeholder="Write some notes if any.">{{ $project->notes }}</textarea>
+                        <button type="submit" class="btn btn-warning">Save Notes</button>
+                    </form>
+
                 </div>
             </div>
             <div class="col-md-3 pt-5">

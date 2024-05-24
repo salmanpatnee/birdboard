@@ -15,9 +15,6 @@ class ProjectController extends Controller
 
     public function show(Project $project)
     {
-        if (auth()->user()->isNot($project->owner)) {
-            abort(403);
-        }
 
         return view('projects.show', compact('project'));
     }
@@ -36,6 +33,17 @@ class ProjectController extends Controller
         ]);
 
         $project = auth()->user()->projects()->create($attributes);
+
+        return redirect(route('projects.show', $project->id));
+    }
+
+    public function update(Project $project)
+    {
+        request()->validate([
+            'notes' => 'min:3'
+        ]);
+
+        $project->update(request(['notes']));
 
         return redirect(route('projects.show', $project->id));
     }
