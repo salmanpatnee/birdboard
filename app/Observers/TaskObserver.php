@@ -11,7 +11,7 @@ class TaskObserver
      */
     public function created(Task $task): void
     {
-        $task->project->recordsActivity("create_task");
+        $task->recordsActivity("created_task");
     }
 
     /**
@@ -19,6 +19,6 @@ class TaskObserver
      */
     public function deleted(Task $task): void
     {
-        $task->project->recordsActivity("delete_task");
+        $task->recordsActivity("deleted_task");
     }
 }

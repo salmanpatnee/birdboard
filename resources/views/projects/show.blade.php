@@ -61,7 +61,10 @@
             </div>
             <div class="col-md-3 pt-5">
                 <x-project-card :project="$project" />
+
+                @include('projects.activity.card')
             </div>
+
         </div>
     </div>
 @endsection

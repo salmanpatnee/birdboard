@@ -12,7 +12,7 @@ class ProjectObserver
      */
     public function created(Project $project): void
     {
-        $project->recordsActivity('create_project');
+        $project->recordsActivity('created_project');
     }
 
     /**
@@ -20,6 +20,6 @@ class ProjectObserver
      */
     public function updated(Project $project): void
     {
-        $project->recordsActivity('update_project');
+        $project->recordsActivity('updated_project');
     }
 }
