@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\RecordsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
 class Project extends Model
 {
-    use HasFactory;
+    use HasFactory, RecordsActivity;
 
     protected $guarded = [];
 
@@ -26,15 +26,5 @@ class Project extends Model
     {
 
         $this->tasks()->create(compact('body'));
-    }
-
-    public function activity()
-    {
-        return $this->hasMany(Activity::class);
-    }
-
-    public function recordsActivity($type)
-    {
-        $this->activity()->create(compact('type'));
     }
 }

@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <h2 class="h5 mb-4">Tasks</h2>
 
                 <div class="card mb-4">
@@ -59,7 +59,7 @@
                 </div>
                 @include('projects.errors')
             </div>
-            <div class="col-md-3 pt-5">
+            <div class="col-md-4 pt-5">
                 <x-project-card :project="$project" />
 
                 @include('projects.activity.card')
