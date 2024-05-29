@@ -8,7 +8,12 @@
         <p class="card-text text-secondary mt-3">
             {{ Str::limit($project->description, 50) }}
         </p>
-        {{-- <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a> --}}
+        <div class="text-end">
+            <form action="{{ route('projects.destroy', $project->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="text-danger btn btn-link text-decoration-none">Delete</button>
+            </form>
+        </div>
     </div>
 </div>

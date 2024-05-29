@@ -32,6 +32,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch('/projects/{project}', [ProjectController::class, 'update'])
         ->name('projects.update')->can('update', 'project');
 
+    Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])
+        ->name('projects.destroy')->can('update', 'project');
+
     /*
      *   Task
     */
