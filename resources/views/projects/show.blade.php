@@ -11,7 +11,17 @@
 
             </div>
             <div class="col text-end">
-                <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-primary">Edit Project</a>
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        @foreach ($project->members as $member)
+                            <img src="{{ $member->gravatar_url }}" class="rounded-circle" alt="{{ $member->name }}">
+                        @endforeach
+                        <img src="{{ $project->owner->gravatar_url }}" class="rounded-circle"
+                            alt="{{ $project->owner->name }}">
+                    </div>
+
+                    <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-primary">Edit Project</a>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -63,8 +73,11 @@
                 <x-project-card :project="$project" />
 
                 @include('projects.activity.card')
-            </div>
 
+                @can('manage', $project)
+                    @include('projects.invite')
+                @endcan
+            </div>
         </div>
     </div>
 @endsection

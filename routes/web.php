@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProjectInvitationController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,7 +14,6 @@ Route::group(['middleware' => 'auth'], function () {
     /*
      *   Project
     */
-
     Route::get('/projects', [ProjectController::class, 'index'])
         ->name('projects.index');
 
@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
         ->name('projects.update')->can('update', 'project');
 
     Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])
-        ->name('projects.destroy')->can('update', 'project');
+        ->name('projects.destroy')->can('delete', 'project');
 
     /*
      *   Task
@@ -43,6 +43,14 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::patch('/projects/{project}/tasks/{task}', [TaskController::class, 'update'])
         ->name('tasks.update')->can('update', 'project');
+
+
+    /*
+     *   Invitation
+    */
+
+    Route::post('/projects/{project}/invite', [ProjectInvitationController::class, 'store'])
+        ->name('invites.store')->can('manage', 'project');
 });
 
 
